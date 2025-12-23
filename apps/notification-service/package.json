@@ -1,0 +1,32 @@
+{
+  "name": "@ecommerce/notification-service",
+  "version": "1.0.0",
+  "private": true,
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "express": "4.21.2",
+    "nodemailer": "6.9.16",
+    "dotenv": "16.4.7",
+    "winston": "3.17.0"
+  },
+  "devDependencies": {
+    "@types/express": "4.17.21",
+    "@types/nodemailer": "6.4.17",
+    "@types/jest": "29.5.14",
+    "jest": "29.7.0",
+    "ts-jest": "29.2.5",
+    "ts-node-dev": "2.0.0",
+    "typescript": "5.7.2"
+  }
+}

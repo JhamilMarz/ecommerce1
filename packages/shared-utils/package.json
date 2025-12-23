@@ -1,0 +1,16 @@
+{
+  "name": "@shared/utils",
+  "version": "1.0.0",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "@types/express": "4.17.21",
+    "typescript": "5.7.2"
+  }
+}
