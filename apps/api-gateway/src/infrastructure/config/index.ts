@@ -6,6 +6,7 @@ export const config = {
   env: process.env.NODE_ENV || 'development',
   port: parseInt(process.env.API_GATEWAY_PORT || '3000', 10),
   host: process.env.API_GATEWAY_HOST || '0.0.0.0',
+  jwtSecret: process.env.JWT_SECRET || 'dev-secret-key-change-in-production',
   cors: {
     origin: process.env.CORS_ORIGIN || '*',
   },
