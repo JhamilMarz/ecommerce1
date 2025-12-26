@@ -1,3 +1,5 @@
+import { CreateRefreshTokenData } from '../repositories/IRefreshTokenRepository';
+
 /**
  * RefreshToken Domain Entity
  * Represents a refresh token for JWT authentication
@@ -20,7 +22,7 @@ export class RefreshToken {
     userId: string,
     token: string,
     expiresAt: Date
-  ): Omit<RefreshToken, 'id' | 'createdAt' | 'revokedAt'> {
+  ): CreateRefreshTokenData {
     return {
       userId,
       token,

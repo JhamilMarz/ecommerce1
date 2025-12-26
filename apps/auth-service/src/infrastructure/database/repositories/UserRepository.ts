@@ -1,5 +1,5 @@
 import { User } from '../../../domain/entities/User';
-import { IUserRepository } from '../../../domain/repositories/IUserRepository';
+import { IUserRepository, CreateUserData } from '../../../domain/repositories/IUserRepository';
 import { UserModel } from '../models/UserModel';
 
 /**
@@ -18,11 +18,11 @@ export class UserRepository implements IUserRepository {
     return userModel ? userModel.toDomainEntity() : null;
   }
 
-  async create(user: Omit<User, 'id' | 'createdAt' | 'updatedAt'>): Promise<User> {
+  async create(user: CreateUserData): Promise<User> {
     const userModel = await UserModel.create({
       email: user.email,
       passwordHash: user.passwordHash,
-      role: user.role,
+      role: user.role as any,
       isActive: user.isActive,
     });
     return userModel.toDomainEntity();

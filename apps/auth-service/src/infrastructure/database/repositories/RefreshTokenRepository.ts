@@ -1,6 +1,6 @@
 import { Op } from 'sequelize';
 import { RefreshToken } from '../../../domain/entities/RefreshToken';
-import { IRefreshTokenRepository } from '../../../domain/repositories/IRefreshTokenRepository';
+import { IRefreshTokenRepository, CreateRefreshTokenData } from '../../../domain/repositories/IRefreshTokenRepository';
 import { RefreshTokenModel } from '../models/RefreshTokenModel';
 
 /**
@@ -30,7 +30,7 @@ export class RefreshTokenRepository implements IRefreshTokenRepository {
   }
 
   async create(
-    refreshToken: Omit<RefreshToken, 'id' | 'createdAt' | 'revokedAt'>
+    refreshToken: CreateRefreshTokenData
   ): Promise<RefreshToken> {
     const tokenModel = await RefreshTokenModel.create({
       userId: refreshToken.userId,

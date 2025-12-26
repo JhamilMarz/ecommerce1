@@ -1,3 +1,5 @@
+import { CreateUserData } from '../repositories/IUserRepository';
+
 /**
  * User Role enum
  * Defines the roles available in the system
@@ -26,7 +28,7 @@ export class User {
   /**
    * Factory method to create a new user
    */
-  static create(email: string, passwordHash: string, role: UserRole = UserRole.CUSTOMER): Omit<User, 'id' | 'createdAt' | 'updatedAt'> {
+  static create(email: string, passwordHash: string, role: UserRole = UserRole.CUSTOMER): CreateUserData {
     return {
       email,
       passwordHash,

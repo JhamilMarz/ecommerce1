@@ -1,5 +1,12 @@
 import { RefreshToken } from '../entities/RefreshToken';
 
+export interface CreateRefreshTokenData {
+  userId: string;
+  token: string;
+  expiresAt: Date;
+  isRevoked: boolean;
+}
+
 /**
  * RefreshToken Repository Interface
  * Defines the contract for refresh token persistence operations
@@ -18,7 +25,7 @@ export interface IRefreshTokenRepository {
   /**
    * Create a new refresh token
    */
-  create(refreshToken: Omit<RefreshToken, 'id' | 'createdAt' | 'revokedAt'>): Promise<RefreshToken>;
+  create(refreshToken: CreateRefreshTokenData): Promise<RefreshToken>;
 
   /**
    * Revoke a refresh token

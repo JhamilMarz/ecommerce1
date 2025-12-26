@@ -1,5 +1,12 @@
 import { User } from '../entities/User';
 
+export interface CreateUserData {
+  email: string;
+  passwordHash: string;
+  role: string;
+  isActive: boolean;
+}
+
 /**
  * User Repository Interface
  * Defines the contract for user persistence operations
@@ -18,7 +25,7 @@ export interface IUserRepository {
   /**
    * Create a new user
    */
-  create(user: Omit<User, 'id' | 'createdAt' | 'updatedAt'>): Promise<User>;
+  create(user: CreateUserData): Promise<User>;
 
   /**
    * Update an existing user
