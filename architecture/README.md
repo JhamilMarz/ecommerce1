@@ -176,14 +176,22 @@ Esta carpeta `/architecture` contiene el **contrato arquitectónico obligatorio*
 
 **Propósito**: Prácticas de desarrollo y estándares de código
 
-| Documento                                                             | Descripción                                            | Cuándo Consultar                       |
-| --------------------------------------------------------------------- | ------------------------------------------------------ | -------------------------------------- |
-| [Coding-Standards.md](11-dev-practices/Coding-Standards.md)           | Convenciones de código, naming, estructura de archivos | Al escribir código, hacer code reviews |
-| [Clean-Code-Principles.md](11-dev-practices/Clean-Code-Principles.md) | Principios de Clean Code, SOLID, refactoring           | Al escribir código, refactorizar       |
-| [Testing-Strategy.md](11-dev-practices/Testing-Strategy.md)           | Unit, integration, e2e tests, coverage targets         | Al escribir tests, configurar CI       |
-| [Branching-Model.md](11-dev-practices/Branching-Model.md)             | Git workflow, branch strategy, merge process           | Al crear branches, hacer PRs           |
+| Documento                                                               | Descripción                                                             | Cuándo Consultar                                    |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | --------------------------------------------------- |
+| [Coding-Standards.md](11-dev-practices/Coding-Standards.md)             | Estándares generales: KISS, DRY, SOLID, TypeScript guidelines           | Al escribir código, hacer code reviews              |
+| [Naming-Conventions.md](11-dev-practices/Naming-Conventions.md)         | ⭐ **Convenciones de nombres**: archivos, carpetas, clases (kebab-case) | **OBLIGATORIO** al crear archivos, carpetas, código |
+| [Testing-Strategy.md](11-dev-practices/Testing-Strategy.md)             | Unit, integration, e2e tests, coverage targets                          | Al escribir tests, configurar CI                    |
+| [Git-Branching-Strategy.md](11-dev-practices/Git-Branching-Strategy.md) | Git workflow, branch strategy, merge process                            | Al crear branches, hacer PRs                        |
+| [Code-Review-Process.md](11-dev-practices/Code-Review-Process.md)       | Proceso de code review, checklist                                       | Al hacer/recibir code reviews                       |
 
 **🎯 Úsalo para**: Mantener calidad de código, onboarding, code reviews
+
+**⚡ IMPORTANTE**: `Naming-Conventions.md` define el estándar oficial del proyecto:
+
+- ✅ Archivos: `kebab-case` (user-repository.ts, jwt-service.ts)
+- ✅ Interfaces: Sin prefijo "I" (UserRepository, not IUserRepository)
+- ✅ Implementations: Prefijo de tecnología (PostgresUserRepository, JoseJwtService)
+- ✅ Clean Architecture structure completa
 
 ---
 
