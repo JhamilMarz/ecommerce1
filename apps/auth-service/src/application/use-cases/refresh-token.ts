@@ -1,7 +1,7 @@
-import { IUserRepository } from '../../domain/repositories/IUserRepository';
-import { IRefreshTokenRepository } from '../../domain/repositories/IRefreshTokenRepository';
-import { IJwtService, JwtPayload } from '../interfaces/IJwtService';
-import { RefreshToken } from '../../domain/entities/RefreshToken';
+import { UserRepository } from '../../domain/repositories/user-repository';
+import { RefreshTokenRepository } from '../../domain/repositories/refresh-token-repository';
+import { JwtService, JwtPayload } from '../interfaces/jwt-service';
+import { RefreshToken } from '../../domain/entities/refresh-token';
 
 export interface RefreshTokenInput {
   refreshToken: string;
@@ -19,9 +19,9 @@ export interface RefreshTokenOutput {
  */
 export class RefreshTokenUseCase {
   constructor(
-    private readonly userRepository: IUserRepository,
-    private readonly refreshTokenRepository: IRefreshTokenRepository,
-    private readonly jwtService: IJwtService
+    private readonly userRepository: UserRepository,
+    private readonly refreshTokenRepository: RefreshTokenRepository,
+    private readonly jwtService: JwtService
   ) {}
 
   async execute(input: RefreshTokenInput): Promise<RefreshTokenOutput> {

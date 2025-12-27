@@ -5,26 +5,26 @@ import cors from 'cors';
 import { config } from './infrastructure/config';
 import { logger } from './infrastructure/logger';
 import { sequelize } from './infrastructure/database';
-import { RabbitMQEventPublisher } from './infrastructure/messaging/RabbitMQEventPublisher';
+import { RabbitMQEventPublisher } from './infrastructure/messaging/rabbitmq-event-publisher';
 
 // Repositories
-import { UserRepository } from './infrastructure/database/repositories/UserRepository';
-import { RefreshTokenRepository } from './infrastructure/database/repositories/RefreshTokenRepository';
+import { PostgresUserRepository } from './infrastructure/database/repositories/postgres-user-repository';
+import { PostgresRefreshTokenRepository } from './infrastructure/database/repositories/postgres-refresh-token-repository';
 
 // Services
-import { JwtService } from './infrastructure/services/JwtService';
-import { PasswordHashingService } from './infrastructure/services/PasswordHashingService';
+import { JoseJwtService } from './infrastructure/services/jose-jwt-service';
+import { Argon2PasswordService } from './infrastructure/services/argon2-password-service';
 
 // Use Cases
-import { RegisterUserUseCase } from './application/use-cases/RegisterUserUseCase';
-import { LoginUserUseCase } from './application/use-cases/LoginUserUseCase';
-import { RefreshTokenUseCase } from './application/use-cases/RefreshTokenUseCase';
-import { LogoutUserUseCase } from './application/use-cases/LogoutUserUseCase';
-import { GetCurrentUserUseCase } from './application/use-cases/GetCurrentUserUseCase';
+import { RegisterUserUseCase } from './application/use-cases/register-user';
+import { LoginUserUseCase } from './application/use-cases/login-user';
+import { RefreshTokenUseCase } from './application/use-cases/refresh-token';
+import { LogoutUserUseCase } from './application/use-cases/logout-user';
+import { GetCurrentUserUseCase } from './application/use-cases/get-current-user';
 
 // HTTP
-import { AuthController } from './infrastructure/http/AuthController';
-import { createAuthRoutes } from './infrastructure/http/routes';
+import { AuthController } from './infrastructure/http/auth-controller';
+import { createAuthRoutes } from './infrastructure/http/auth-routes';
 import { correlationIdMiddleware } from './infrastructure/middleware/correlation-id';
 import { requestLoggerMiddleware } from './infrastructure/middleware/request-logger';
 import { errorHandler } from './infrastructure/middleware/error-handler';
@@ -45,10 +45,10 @@ app.get('/health', (_req, res) => {
 });
 
 // Initialize dependencies
-const userRepository = new UserRepository();
-const refreshTokenRepository = new RefreshTokenRepository();
-const jwtService = new JwtService();
-const passwordHashingService = new PasswordHashingService();
+const userRepository = new PostgresUserRepository();
+const refreshTokenRepository = new PostgresRefreshTokenRepository();
+const jwtService = new JoseJwtService();
+const passwordHashingService = new Argon2PasswordService();
 const eventPublisher = new RabbitMQEventPublisher();
 
 // Initialize use cases

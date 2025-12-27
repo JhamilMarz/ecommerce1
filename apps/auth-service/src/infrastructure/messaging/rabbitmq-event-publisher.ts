@@ -1,5 +1,5 @@
 import amqp, { Connection, Channel } from 'amqplib';
-import { IEventPublisher } from '../../application/interfaces/IEventPublisher';
+import { EventPublisher } from '../../application/interfaces/event-publisher';
 import { config } from '../config';
 import { logger } from '../logger';
 
@@ -7,7 +7,7 @@ import { logger } from '../logger';
  * RabbitMQ Event Publisher
  * Publishes domain events to RabbitMQ exchange
  */
-export class RabbitMQEventPublisher implements IEventPublisher {
+export class RabbitMQEventPublisher implements EventPublisher {
   private connection: Connection | null = null;
   private channel: Channel | null = null;
   private isConnecting = false;

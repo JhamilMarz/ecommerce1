@@ -1,12 +1,12 @@
 import { Op } from 'sequelize';
-import { RefreshToken } from '../../../domain/entities/RefreshToken';
-import { IRefreshTokenRepository, CreateRefreshTokenData } from '../../../domain/repositories/IRefreshTokenRepository';
-import { RefreshTokenModel } from '../models/RefreshTokenModel';
+import { RefreshToken } from '../../../domain/entities/refresh-token';
+import { RefreshTokenRepository, CreateRefreshTokenData } from '../../../domain/repositories/refresh-token-repository';
+import { RefreshTokenModel } from '../models/refresh-token-model';
 
 /**
  * RefreshToken Repository Implementation using Sequelize
  */
-export class RefreshTokenRepository implements IRefreshTokenRepository {
+export class PostgresRefreshTokenRepository implements RefreshTokenRepository {
   async findByToken(token: string): Promise<RefreshToken | null> {
     const tokenModel = await RefreshTokenModel.findOne({
       where: { token },

@@ -1,4 +1,4 @@
-import { CreateRefreshTokenData } from '../repositories/IRefreshTokenRepository';
+import { CreateRefreshTokenData } from '../repositories/refresh-token-repository';
 
 /**
  * RefreshToken Domain Entity

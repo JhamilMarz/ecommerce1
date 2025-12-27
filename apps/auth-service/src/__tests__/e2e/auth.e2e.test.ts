@@ -1,20 +1,20 @@
 import request from 'supertest';
 import express from 'express';
-import { AuthController } from '../../infrastructure/http/AuthController';
-import { createAuthRoutes } from '../../infrastructure/http/routes';
+import { AuthController } from '../../infrastructure/http/auth-controller';
+import { createAuthRoutes } from '../../infrastructure/http/auth-routes';
 import { errorHandler } from '../../infrastructure/middleware/error-handler';
-import { RegisterUserUseCase } from '../../application/use-cases/RegisterUserUseCase';
-import { LoginUserUseCase } from '../../application/use-cases/LoginUserUseCase';
-import { RefreshTokenUseCase } from '../../application/use-cases/RefreshTokenUseCase';
-import { LogoutUserUseCase } from '../../application/use-cases/LogoutUserUseCase';
-import { GetCurrentUserUseCase } from '../../application/use-cases/GetCurrentUserUseCase';
+import { RegisterUserUseCase } from '../../application/use-cases/register-user';
+import { LoginUserUseCase } from '../../application/use-cases/login-user';
+import { RefreshTokenUseCase } from '../../application/use-cases/refresh-token';
+import { LogoutUserUseCase } from '../../application/use-cases/logout-user';
+import { GetCurrentUserUseCase } from '../../application/use-cases/get-current-user';
 
 // Mock use cases
-jest.mock('../../application/use-cases/RegisterUserUseCase');
-jest.mock('../../application/use-cases/LoginUserUseCase');
-jest.mock('../../application/use-cases/RefreshTokenUseCase');
-jest.mock('../../application/use-cases/LogoutUserUseCase');
-jest.mock('../../application/use-cases/GetCurrentUserUseCase');
+jest.mock('../../application/use-cases/register-user');
+jest.mock('../../application/use-cases/login-user');
+jest.mock('../../application/use-cases/refresh-token');
+jest.mock('../../application/use-cases/logout-user');
+jest.mock('../../application/use-cases/get-current-user');
 
 describe('Auth Endpoints E2E', () => {
   let app: express.Application;

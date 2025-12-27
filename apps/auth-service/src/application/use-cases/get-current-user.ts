@@ -1,4 +1,4 @@
-import { IUserRepository } from '../../domain/repositories/IUserRepository';
+import { UserRepository } from '../../domain/repositories/user-repository';
 
 export interface GetCurrentUserInput {
   userId: string;
@@ -17,7 +17,7 @@ export interface GetCurrentUserOutput {
  * Retrieves authenticated user information
  */
 export class GetCurrentUserUseCase {
-  constructor(private readonly userRepository: IUserRepository) {}
+  constructor(private readonly userRepository: UserRepository) {}
 
   async execute(input: GetCurrentUserInput): Promise<GetCurrentUserOutput> {
     const user = await this.userRepository.findById(input.userId);

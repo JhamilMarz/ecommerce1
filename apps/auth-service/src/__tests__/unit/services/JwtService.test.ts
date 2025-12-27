@@ -1,5 +1,5 @@
-import { JwtService } from '../../../infrastructure/services/JwtService';
-import { JwtPayload } from '../../../application/interfaces/IJwtService';
+import { JoseJwtService } from '../../../infrastructure/services/jose-jwt-service';
+import { JwtPayload } from '../../../application/interfaces/jwt-service';
 import jwt from 'jsonwebtoken';
 
 // Mock config
@@ -15,10 +15,10 @@ jest.mock('../../../infrastructure/config', () => ({
 }));
 
 describe('JwtService', () => {
-  let jwtService: JwtService;
+  let jwtService: JoseJwtService;
 
   beforeEach(() => {
-    jwtService = new JwtService();
+    jwtService = new JoseJwtService();
   });
 
   describe('generateAccessToken', () => {

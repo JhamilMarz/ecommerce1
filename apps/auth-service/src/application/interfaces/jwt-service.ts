@@ -21,7 +21,7 @@ export interface TokenPair {
  * JWT Service Interface
  * Abstraction for JWT token operations
  */
-export interface IJwtService {
+export interface JwtService {
   /**
    * Generate access token
    */

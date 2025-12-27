@@ -1,19 +1,19 @@
-import { LoginUserUseCase, LoginUserInput } from '../../../application/use-cases/LoginUserUseCase';
-import { IUserRepository } from '../../../domain/repositories/IUserRepository';
-import { IRefreshTokenRepository } from '../../../domain/repositories/IRefreshTokenRepository';
-import { IPasswordHashingService } from '../../../application/interfaces/IPasswordHashingService';
-import { IJwtService } from '../../../application/interfaces/IJwtService';
-import { IEventPublisher } from '../../../application/interfaces/IEventPublisher';
-import { User, UserRole } from '../../../domain/entities/User';
-import { RefreshToken } from '../../../domain/entities/RefreshToken';
+import { LoginUserUseCase, LoginUserInput } from '../../../application/use-cases/login-user';
+import { UserRepository } from '../../../domain/repositories/user-repository';
+import { RefreshTokenRepository } from '../../../domain/repositories/refresh-token-repository';
+import { PasswordHashingService } from '../../../application/interfaces/password-hashing-service';
+import { JwtService } from '../../../application/interfaces/jwt-service';
+import { EventPublisher } from '../../../application/interfaces/event-publisher';
+import { User, UserRole } from '../../../domain/entities/user';
+import { RefreshToken } from '../../../domain/entities/refresh-token';
 
 describe('LoginUserUseCase', () => {
   let loginUserUseCase: LoginUserUseCase;
-  let mockUserRepository: jest.Mocked<IUserRepository>;
-  let mockRefreshTokenRepository: jest.Mocked<IRefreshTokenRepository>;
-  let mockPasswordHashingService: jest.Mocked<IPasswordHashingService>;
-  let mockJwtService: jest.Mocked<IJwtService>;
-  let mockEventPublisher: jest.Mocked<IEventPublisher>;
+  let mockUserRepository: jest.Mocked<UserRepository>;
+  let mockRefreshTokenRepository: jest.Mocked<RefreshTokenRepository>;
+  let mockPasswordHashingService: jest.Mocked<PasswordHashingService>;
+  let mockJwtService: jest.Mocked<JwtService>;
+  let mockEventPublisher: jest.Mocked<EventPublisher>;
 
   beforeEach(() => {
     mockUserRepository = {

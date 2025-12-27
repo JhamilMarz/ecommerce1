@@ -1,5 +1,5 @@
-import { IRefreshTokenRepository } from '../../domain/repositories/IRefreshTokenRepository';
-import { IEventPublisher } from '../interfaces/IEventPublisher';
+import { RefreshTokenRepository } from '../../domain/repositories/refresh-token-repository';
+import { EventPublisher } from '../interfaces/event-publisher';
 
 export interface LogoutUserInput {
   userId: string;
@@ -13,8 +13,8 @@ export interface LogoutUserInput {
  */
 export class LogoutUserUseCase {
   constructor(
-    private readonly refreshTokenRepository: IRefreshTokenRepository,
-    private readonly eventPublisher: IEventPublisher
+    private readonly refreshTokenRepository: RefreshTokenRepository,
+    private readonly eventPublisher: EventPublisher
   ) {}
 
   async execute(input: LogoutUserInput): Promise<void> {

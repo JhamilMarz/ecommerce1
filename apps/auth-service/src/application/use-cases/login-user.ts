@@ -1,9 +1,9 @@
-import { IUserRepository } from '../../domain/repositories/IUserRepository';
-import { IRefreshTokenRepository } from '../../domain/repositories/IRefreshTokenRepository';
-import { IPasswordHashingService } from '../interfaces/IPasswordHashingService';
-import { IJwtService, JwtPayload } from '../interfaces/IJwtService';
-import { IEventPublisher } from '../interfaces/IEventPublisher';
-import { RefreshToken } from '../../domain/entities/RefreshToken';
+import { UserRepository } from '../../domain/repositories/user-repository';
+import { RefreshTokenRepository } from '../../domain/repositories/refresh-token-repository';
+import { PasswordHashingService } from '../interfaces/password-hashing-service';
+import { JwtService, JwtPayload } from '../interfaces/jwt-service';
+import { EventPublisher } from '../interfaces/event-publisher';
+import { RefreshToken } from '../../domain/entities/refresh-token';
 
 export interface LoginUserInput {
   email: string;
@@ -27,11 +27,11 @@ export interface LoginUserOutput {
  */
 export class LoginUserUseCase {
   constructor(
-    private readonly userRepository: IUserRepository,
-    private readonly refreshTokenRepository: IRefreshTokenRepository,
-    private readonly passwordHashingService: IPasswordHashingService,
-    private readonly jwtService: IJwtService,
-    private readonly eventPublisher: IEventPublisher
+    private readonly userRepository: UserRepository,
+    private readonly refreshTokenRepository: RefreshTokenRepository,
+    private readonly passwordHashingService: PasswordHashingService,
+    private readonly jwtService: JwtService,
+    private readonly eventPublisher: EventPublisher
   ) {}
 
   async execute(input: LoginUserInput): Promise<LoginUserOutput> {

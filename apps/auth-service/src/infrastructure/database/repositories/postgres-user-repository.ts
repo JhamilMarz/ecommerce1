@@ -1,11 +1,11 @@
-import { User } from '../../../domain/entities/User';
-import { IUserRepository, CreateUserData } from '../../../domain/repositories/IUserRepository';
-import { UserModel } from '../models/UserModel';
+import { User } from '../../../domain/entities/user';
+import { UserRepository, CreateUserData } from '../../../domain/repositories/user-repository';
+import { UserModel } from '../models/user-model';
 
 /**
  * User Repository Implementation using Sequelize
  */
-export class UserRepository implements IUserRepository {
+export class PostgresUserRepository implements UserRepository {
   async findById(id: string): Promise<User | null> {
     const userModel = await UserModel.findByPk(id);
     return userModel ? userModel.toDomainEntity() : null;

@@ -1,12 +1,12 @@
 import jwt from 'jsonwebtoken';
-import { IJwtService, JwtPayload, TokenPair } from '../../application/interfaces/IJwtService';
+import { JwtService, JwtPayload, TokenPair } from '../../application/interfaces/jwt-service';
 import { config } from '../config';
 
 /**
  * JWT Service Implementation
  * Handles JWT token generation and verification using jsonwebtoken
  */
-export class JwtService implements IJwtService {
+export class JoseJwtService implements JwtService {
   generateAccessToken(payload: JwtPayload): string {
     return jwt.sign(payload, config.jwt.accessTokenSecret, {
       expiresIn: config.jwt.accessTokenExpiresIn,

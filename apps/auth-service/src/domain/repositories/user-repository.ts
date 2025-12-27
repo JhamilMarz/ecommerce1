@@ -1,4 +1,4 @@
-import { User } from '../entities/User';
+import { User } from '../entities/user';
 
 export interface CreateUserData {
   email: string;
@@ -11,7 +11,7 @@ export interface CreateUserData {
  * User Repository Interface
  * Defines the contract for user persistence operations
  */
-export interface IUserRepository {
+export interface UserRepository {
   /**
    * Find a user by ID
    */

@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { UserRole } from '../../domain/entities/User';
+import { UserRole } from '../../domain/entities/user';
 
 export const registerSchema = Joi.object({
   email: Joi.string().email().required().messages({

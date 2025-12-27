@@ -1,4 +1,4 @@
-import { CreateUserData } from '../repositories/IUserRepository';
+import { CreateUserData } from '../repositories/user-repository';
 
 /**
  * User Role enum

@@ -1,14 +1,14 @@
-import { RegisterUserUseCase, RegisterUserInput } from '../../../application/use-cases/RegisterUserUseCase';
-import { IUserRepository } from '../../../domain/repositories/IUserRepository';
-import { IPasswordHashingService } from '../../../application/interfaces/IPasswordHashingService';
-import { IEventPublisher } from '../../../application/interfaces/IEventPublisher';
-import { User, UserRole } from '../../../domain/entities/User';
+import { RegisterUserUseCase, RegisterUserInput } from '../../../application/use-cases/register-user';
+import { UserRepository } from '../../../domain/repositories/user-repository';
+import { PasswordHashingService } from '../../../application/interfaces/password-hashing-service';
+import { EventPublisher } from '../../../application/interfaces/event-publisher';
+import { User, UserRole } from '../../../domain/entities/user';
 
 describe('RegisterUserUseCase', () => {
   let registerUserUseCase: RegisterUserUseCase;
-  let mockUserRepository: jest.Mocked<IUserRepository>;
-  let mockPasswordHashingService: jest.Mocked<IPasswordHashingService>;
-  let mockEventPublisher: jest.Mocked<IEventPublisher>;
+  let mockUserRepository: jest.Mocked<UserRepository>;
+  let mockPasswordHashingService: jest.Mocked<PasswordHashingService>;
+  let mockEventPublisher: jest.Mocked<EventPublisher>;
 
   beforeEach(() => {
     mockUserRepository = {

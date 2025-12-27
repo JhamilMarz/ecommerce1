@@ -2,7 +2,7 @@
  * Password Hashing Service Interface
  * Abstraction for password hashing operations
  */
-export interface IPasswordHashingService {
+export interface PasswordHashingService {
   /**
    * Hash a plain text password
    */

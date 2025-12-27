@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from 'express';
-import { RegisterUserUseCase } from '../../application/use-cases/RegisterUserUseCase';
-import { LoginUserUseCase } from '../../application/use-cases/LoginUserUseCase';
-import { RefreshTokenUseCase } from '../../application/use-cases/RefreshTokenUseCase';
-import { LogoutUserUseCase } from '../../application/use-cases/LogoutUserUseCase';
-import { GetCurrentUserUseCase } from '../../application/use-cases/GetCurrentUserUseCase';
+import { RegisterUserUseCase } from '../../application/use-cases/register-user';
+import { LoginUserUseCase } from '../../application/use-cases/login-user';
+import { RefreshTokenUseCase } from '../../application/use-cases/refresh-token';
+import { LogoutUserUseCase } from '../../application/use-cases/logout-user';
+import { GetCurrentUserUseCase } from '../../application/use-cases/get-current-user';
 
 export class AuthController {
   constructor(

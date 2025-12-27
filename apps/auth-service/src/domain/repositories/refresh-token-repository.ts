@@ -1,4 +1,4 @@
-import { RefreshToken } from '../entities/RefreshToken';
+import { RefreshToken } from '../entities/refresh-token';
 
 export interface CreateRefreshTokenData {
   userId: string;
@@ -11,7 +11,7 @@ export interface CreateRefreshTokenData {
  * RefreshToken Repository Interface
  * Defines the contract for refresh token persistence operations
  */
-export interface IRefreshTokenRepository {
+export interface RefreshTokenRepository {
   /**
    * Find a refresh token by token string
    */

@@ -1,10 +1,10 @@
-import { PasswordHashingService } from '../../../infrastructure/services/PasswordHashingService';
+import { Argon2PasswordService } from '../../../infrastructure/services/argon2-password-service';
 
 describe('PasswordHashingService', () => {
-  let passwordHashingService: PasswordHashingService;
+  let passwordHashingService: Argon2PasswordService;
 
   beforeEach(() => {
-    passwordHashingService = new PasswordHashingService();
+    passwordHashingService = new Argon2PasswordService();
   });
 
   describe('hash', () => {

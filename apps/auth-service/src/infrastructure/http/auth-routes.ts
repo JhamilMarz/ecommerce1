@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import rateLimit from 'express-rate-limit';
-import { AuthController } from './AuthController';
+import { AuthController } from './auth-controller';
 import { validateRequest } from '../middleware/validate-request';
-import { registerSchema, loginSchema, refreshTokenSchema, logoutSchema } from './schemas';
+import { registerSchema, loginSchema, refreshTokenSchema, logoutSchema } from './auth-schemas';
 import { config } from '../config';
 
 // Rate limiter for auth endpoints

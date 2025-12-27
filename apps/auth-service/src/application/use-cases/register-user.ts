@@ -1,7 +1,7 @@
-import { User, UserRole } from '../../domain/entities/User';
-import { IUserRepository } from '../../domain/repositories/IUserRepository';
-import { IPasswordHashingService } from '../interfaces/IPasswordHashingService';
-import { IEventPublisher } from '../interfaces/IEventPublisher';
+import { User, UserRole } from '../../domain/entities/user';
+import { UserRepository } from '../../domain/repositories/user-repository';
+import { PasswordHashingService } from '../interfaces/password-hashing-service';
+import { EventPublisher } from '../interfaces/event-publisher';
 
 export interface RegisterUserInput {
   email: string;
@@ -25,9 +25,9 @@ export interface RegisterUserOutput {
  */
 export class RegisterUserUseCase {
   constructor(
-    private readonly userRepository: IUserRepository,
-    private readonly passwordHashingService: IPasswordHashingService,
-    private readonly eventPublisher: IEventPublisher
+    private readonly userRepository: UserRepository,
+    private readonly passwordHashingService: PasswordHashingService,
+    private readonly eventPublisher: EventPublisher
   ) {}
 
   async execute(input: RegisterUserInput): Promise<RegisterUserOutput> {

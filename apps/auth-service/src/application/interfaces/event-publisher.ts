@@ -2,7 +2,7 @@
  * Event Publisher Interface
  * Abstraction for publishing domain events to message broker
  */
-export interface IEventPublisher {
+export interface EventPublisher {
   /**
    * Publish an event to the message broker
    */

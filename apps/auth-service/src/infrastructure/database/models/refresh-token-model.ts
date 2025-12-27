@@ -1,7 +1,7 @@
 import { DataTypes, Model, Optional } from 'sequelize';
 import { sequelize } from '../index';
-import { RefreshToken as RefreshTokenEntity } from '../../../domain/entities/RefreshToken';
-import { UserModel } from './UserModel';
+import { RefreshToken as RefreshTokenEntity } from '../../../domain/entities/refresh-token';
+import { UserModel } from './user-model';
 
 interface RefreshTokenAttributes {
   id: string;

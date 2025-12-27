@@ -1,15 +1,15 @@
-import { RefreshTokenUseCase, RefreshTokenInput } from '../../../application/use-cases/RefreshTokenUseCase';
-import { IUserRepository } from '../../../domain/repositories/IUserRepository';
-import { IRefreshTokenRepository } from '../../../domain/repositories/IRefreshTokenRepository';
-import { IJwtService } from '../../../application/interfaces/IJwtService';
-import { User, UserRole } from '../../../domain/entities/User';
-import { RefreshToken } from '../../../domain/entities/RefreshToken';
+import { RefreshTokenUseCase, RefreshTokenInput } from '../../../application/use-cases/refresh-token';
+import { UserRepository } from '../../../domain/repositories/user-repository';
+import { RefreshTokenRepository } from '../../../domain/repositories/refresh-token-repository';
+import { JwtService } from '../../../application/interfaces/jwt-service';
+import { User, UserRole } from '../../../domain/entities/user';
+import { RefreshToken } from '../../../domain/entities/refresh-token';
 
 describe('RefreshTokenUseCase', () => {
   let refreshTokenUseCase: RefreshTokenUseCase;
-  let mockUserRepository: jest.Mocked<IUserRepository>;
-  let mockRefreshTokenRepository: jest.Mocked<IRefreshTokenRepository>;
-  let mockJwtService: jest.Mocked<IJwtService>;
+  let mockUserRepository: jest.Mocked<UserRepository>;
+  let mockRefreshTokenRepository: jest.Mocked<RefreshTokenRepository>;
+  let mockJwtService: jest.Mocked<JwtService>;
 
   beforeEach(() => {
     mockUserRepository = {

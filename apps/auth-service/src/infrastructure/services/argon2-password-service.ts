@@ -1,11 +1,11 @@
 import argon2 from 'argon2';
-import { IPasswordHashingService } from '../../application/interfaces/IPasswordHashingService';
+import { PasswordHashingService } from '../../application/interfaces/password-hashing-service';
 
 /**
  * Password Hashing Service Implementation using Argon2
  * Argon2 is the winner of the Password Hashing Competition and recommended by OWASP
  */
-export class PasswordHashingService implements IPasswordHashingService {
+export class Argon2PasswordService implements PasswordHashingService {
   private readonly options = {
     type: argon2.argon2id, // Argon2id (hybrid of Argon2i and Argon2d)
     memoryCost: 65536, // 64 MB
