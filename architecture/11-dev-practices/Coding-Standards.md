@@ -1073,7 +1073,214 @@ npx lint-staged
 
 ---
 
-## 📊 Code Quality Metrics
+## � Dependency Management
+
+### Exact Versions (OBLIGATORIO)
+
+**REGLA**: Todas las dependencias DEBEN usar versiones exactas en `package.json`
+
+**❌ PROHIBIDO**: Rangos de versiones con `^`, `~`, `>=`, `*`
+
+```json
+// ❌ BAD - Rangos de versiones
+{
+  "dependencies": {
+    "express": "^4.21.2",      // ❌ Permite 4.x.x
+    "sequelize": "~6.37.5",    // ❌ Permite 6.37.x
+    "winston": ">=3.17.0",     // ❌ Permite 3.x.x o superior
+    "typescript": "*"          // ❌ Permite cualquier versión
+  }
+}
+
+// ✅ GOOD - Versiones exactas
+{
+  "dependencies": {
+    "express": "4.21.2",       // ✅ Solo 4.21.2
+    "sequelize": "6.37.5",     // ✅ Solo 6.37.5
+    "winston": "3.17.0",       // ✅ Solo 3.17.0
+    "typescript": "5.7.2"      // ✅ Solo 5.7.2
+  }
+}
+```
+
+### Justificación
+
+**Problema con rangos de versiones**:
+
+- **Builds no reproducibles**: Diferentes devs obtienen diferentes versiones
+- **Bugs introducidos silenciosamente**: Dependencias actualizadas sin control
+- **CI/CD inconsistente**: Deploy puede tener versiones diferentes a local
+- **Debugging imposible**: "Funciona en mi máquina" por versiones diferentes
+
+**Ejemplo real del problema**:
+
+```bash
+# Dev A instala hoy (obtiene express@4.21.2)
+pnpm install
+
+# Dev B instala mañana (obtiene express@4.22.0 - nueva versión con bug)
+pnpm install
+
+# Bug solo aparece en máquina de Dev B
+# Causa: express 4.22.0 tiene breaking change no documentado
+```
+
+### Estrategia de Actualización
+
+**NO actualizar automáticamente**, usar proceso controlado:
+
+1. **Verificar updates disponibles**:
+
+```bash
+pnpm outdated
+```
+
+2. **Actualizar una a la vez en branch separado**:
+
+```bash
+# Actualizar una dependencia específica
+pnpm update express --latest
+
+# Verificar que todo funciona
+pnpm test
+pnpm build
+
+# Commit con mensaje descriptivo
+git commit -m "chore(deps): update express 4.21.2 → 4.22.0"
+```
+
+3. **Testing exhaustivo**:
+
+- [ ] Unit tests pasan
+- [ ] Integration tests pasan
+- [ ] E2E tests pasan
+- [ ] Build exitoso
+- [ ] Smoke test en staging
+
+4. **Actualizar package.json con versión exacta**:
+
+```json
+{
+  "dependencies": {
+    "express": "4.22.0" // Sin ^, ~, >=
+  }
+}
+```
+
+### Lock Files
+
+**OBLIGATORIO** commitear `pnpm-lock.yaml`:
+
+```bash
+# .gitignore - NO ignorar lock file
+# pnpm-lock.yaml  ❌ NUNCA descomentar esta línea
+```
+
+**Razón**: Lock file asegura mismas versiones en todos los ambientes
+
+### Monorepo - Versiones Consistentes
+
+**OBLIGATORIO**: Misma versión de dependencias compartidas en todos los servicios
+
+```json
+// ❌ BAD - Versiones inconsistentes
+// auth-service/package.json
+{
+  "dependencies": {
+    "winston": "3.17.0"
+  }
+}
+
+// product-service/package.json
+{
+  "dependencies": {
+    "winston": "3.14.0"  // ❌ Diferente versión
+  }
+}
+
+// ✅ GOOD - Versión consistente
+// Usar workspace protocol o version exacta compartida
+// root package.json
+{
+  "dependencies": {
+    "winston": "3.17.0"
+  }
+}
+
+// auth-service, product-service usan la del root
+```
+
+### Dependabot / Renovate
+
+**SI usamos** herramientas de actualización automática:
+
+```yaml
+# .github/dependabot.yml
+version: 2
+updates:
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'monthly' # NO weekly - muy frecuente
+    versioning-strategy: 'increase'
+    open-pull-requests-limit: 3
+    reviewers:
+      - 'tech-leads'
+    labels:
+      - 'dependencies'
+      - 'requires-testing'
+```
+
+**Reglas**:
+
+- ✅ PRs de actualización requieren **code review obligatorio**
+- ✅ Todas las actualizaciones pasan por **staging primero**
+- ✅ **NO merge automático** de dependabot PRs
+- ✅ Actualizar major versions en **sprint dedicado**
+
+### Security Updates (Excepción)
+
+**ÚNICO caso** donde actualizar rápidamente:
+
+```bash
+# CVE crítico detectado
+pnpm audit
+
+# Actualizar dependencia vulnerable INMEDIATAMENTE
+pnpm update <vulnerable-package> --latest
+
+# Verificar que fix funciona
+pnpm test
+
+# Deploy urgente a producción
+```
+
+### Package.json Template
+
+```json
+{
+  "name": "@ecommerce/service-name",
+  "version": "1.0.0",
+  "engines": {
+    "node": "18.20.8", // ✅ Versión exacta
+    "pnpm": "9.15.0" // ✅ Versión exacta
+  },
+  "dependencies": {
+    "express": "4.21.2", // ✅ Sin ^ ~ >= *
+    "sequelize": "6.37.5",
+    "winston": "3.17.0"
+  },
+  "devDependencies": {
+    "typescript": "5.7.2",
+    "jest": "29.7.0",
+    "@types/node": "18.19.68"
+  }
+}
+```
+
+---
+
+## �📊 Code Quality Metrics
 
 ### SonarQube Targets
 
