@@ -80,7 +80,7 @@ export function createMetricsRouter(): Router {
    * GET /metrics
    * Prometheus metrics endpoint
    */
-  router.get('/', async (req, res) => {
+  router.get('/', async (_req, res) => {
     try {
       res.set('Content-Type', register.contentType);
       const metrics = await register.metrics();

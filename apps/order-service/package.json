@@ -13,8 +13,10 @@
     "test:coverage": "jest --coverage",
     "lint": "eslint src --ext .ts",
     "lint:fix": "eslint src --ext .ts --fix",
+    "format": "prettier --write \"src/**/*.ts\"",
     "type-check": "tsc --noEmit",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "prepare": "cd ../.. && husky install apps/order-service/.husky"
   },
   "keywords": ["ecommerce", "microservices", "orders", "state-machine", "mongodb"],
   "author": "E-commerce Team",
@@ -49,10 +51,20 @@
     "eslint": "8.57.1",
     "@typescript-eslint/parser": "6.21.0",
     "@typescript-eslint/eslint-plugin": "6.21.0",
+    "eslint-config-prettier": "9.1.0",
+    "prettier": "3.4.2",
+    "husky": "9.1.7",
+    "lint-staged": "15.2.11",
     "mongodb-memory-server": "10.1.2"
   },
   "engines": {
     "node": "18.20.8",
     "pnpm": "9.15.0"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   }
 }

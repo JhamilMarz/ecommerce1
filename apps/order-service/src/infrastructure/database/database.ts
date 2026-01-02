@@ -109,7 +109,9 @@ export class Database {
       }
 
       // Ping database
-      await mongoose.connection.db.admin().ping();
+      if (mongoose.connection.db) {
+        await mongoose.connection.db.admin().ping();
+      }
       return true;
     } catch (error) {
       logger.error('MongoDB: Health check failed', {

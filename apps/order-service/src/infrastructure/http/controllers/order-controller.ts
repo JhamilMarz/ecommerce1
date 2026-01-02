@@ -212,7 +212,7 @@ export class OrderController {
    * Health check endpoint
    */
   healthCheck = async (
-    req: Request,
+    _req: Request,
     res: Response,
     next: NextFunction,
   ): Promise<void> => {
